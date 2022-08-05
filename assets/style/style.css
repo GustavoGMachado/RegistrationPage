@@ -4,13 +4,23 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
 :root {
     --color01: rgb(25, 85, 170);
     --color02: rgb(75, 135, 215);
 }
 
 #secArea {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: linear-gradient(var(--color01), var(--color02));
     display: flex;
@@ -27,7 +37,7 @@
     justify-content: center;
 }
 
-#secAreaSpaces div {
+#secAreaSpaces a {
     margin: 20px;
     flex: 1;
     display: flex;
@@ -37,7 +47,7 @@
     border-radius: 10px;
     font-size: 35px;
 }
-#secAreaSpaces div:hover {
+#secAreaSpaces a:hover {
     background-color: var(--color02);
 }
 
@@ -50,11 +60,43 @@ img {
     height: 200px;
 }
 
-#formHtmlArea {
+#secForm {
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background-color: var(--color02);
+}
+
+#secForm div:nth-child(1) {
+    color: white;
+    font-size: 28px;
+    text-align: center;
+}
+
+#formHtmlArea {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#confirmForm {
+    display: flex;
+}
+
+#confirmForm a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 150px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+
+#confirmForm a:hover {
+    background-color: var(--color01);
 }
