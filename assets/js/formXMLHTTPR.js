@@ -32,9 +32,18 @@ function loadForm(el) {
     const href = el.getAttribute('href')
 
     let secFormDiv1 = document.querySelectorAll("#secForm div")[0]
-    if (href == "HTML/verificationPage.html") secFormDiv1.innerHTML = "CADASTRAR NA ÁREA DE VERIFICAÇÃO"
-    if (href == "HTML/tiPage.html") secFormDiv1.innerHTML = "CADASTRAR NA ÁREA DE TI"
-    if (href == "HTML/supportPage.html") secFormDiv1.innerHTML = "CADASTRAR NA ÁREA DE SUPORTE"
+    if (href == "HTML/verificationPage.html") {
+        secFormDiv1.innerHTML = "CADASTRAR NA ÁREA DE VERIFICAÇÃO"
+        secFormDiv1.setAttribute("definedReg", "verificationReg")
+    }
+    if (href == "HTML/tiPage.html") {
+        secFormDiv1.innerHTML = "CADASTRAR NA ÁREA DE TI"
+        secFormDiv1.setAttribute("definedReg", "tiReg")
+    }
+    if (href == "HTML/supportPage.html") {
+        secFormDiv1.innerHTML = "CADASTRAR NA ÁREA DE SUPORTE"
+        secFormDiv1.setAttribute("definedReg", "supReg")
+    }
 
     const config = {
         method: 'GET',
@@ -60,32 +69,3 @@ function openForm() {
     formHtmlArea.style.display = 'flex'
     formHtmlArea.scrollIntoView()
 }
-
-
-
-
-
-
-
-
-// NOME
-// SOBRENOME
-// CPF
-// IDADE
-// NATURALIDADE
-// AREA DE FORMAÇÃO
-
-// VERIFICAÇÃO
-// AREA DE TRABALHO
-// CHECKLISTS ENCARREGADAS
-// NIVEL DE ATUAÇÃO (1,2,3...)
-
-// TI
-// HARD SKILLS
-// AREA DE DESENVOLVIMENTO
-// NIVEL DE EXPERIENCIA
-
-// SUPORTE
-// AREA DE ATUAÇÃO
-// REGIÃO QUE ATENDE
-// IDIOMAS
