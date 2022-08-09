@@ -7,6 +7,10 @@ class Employee {
         this.countryOrigin = countryOrigin
         this.profissionalArea = profissionalArea
     }
+
+    checkCPF(cpf) {
+
+    }
 }
 
 class VerificationEmployee extends Employee {
@@ -42,53 +46,66 @@ class supportEmployee extends Employee {
 function createVerificationEmployee() {
     const verGeneralData = captureGeneralData() // Array com os valores nas inputs é retornado
     const newVerEmployee = new VerificationEmployee(...verGeneralData)
-    console.log(newVerEmployee)
-    
+    manageReg(newVerEmployee)
 }
 function createTiEmployee() {
     const tiGeneralData = captureGeneralData() // Array com os valores nas inputs é retornado
-    const newTiEmployee = new TiEmployee()
-    
+    const newTiEmployee = new TiEmployee(...tiGeneralData)
+    manageReg(newTiEmployee)
 }
 function createSupportEmployee() {
     const supGeneralData = captureGeneralData() // Array com os valores nas inputs é retornado
-    const newSupEmployee = new supportEmployee()
-    
+    const newSupEmployee = new supportEmployee(...supGeneralData)
+    manageReg(newSupEmployee)
 }
 
-
-// capturando os dados do form
+// capturando os dados do form e apagando as mensagens de erro
 function captureGeneralData() {
+    document.querySelectorAll('.formRegistrationSpan').forEach((el, key) => {
+        el.remove()
+    })
+
     const generalData = []
 
     document.querySelectorAll("#formRegistration div input").forEach((el, key) => {
+        verficationData(el, key)
         generalData.push(el.value)
     })
 
     return generalData
-    // const name = document.querySelector("input#name").value
-    // const lastName = document.querySelector("input#lastName")
-    // const cpf = document.querySelector("input#cpf")
-    // const age = document.querySelector("input#age")
-    // const countryOrigin = document.querySelector("input#countryOrigin")
-    // const profissionalArea = document.querySelector("input#profissionalArea")
-
-    // return [name, lastName, cpf, age, countryOrigin, profissionalArea]
 }
 
+//lançador de erros
+function verficationData(el, key) {
+    if (!el.value) throwErrorData(el, `Campo ${el.placeholder.toUpperCase()} não pode estar vazio, tente novamente!`)
+    console.log(el.placeholder)
+    if ((key === 0 || key === 1 || key === 4)) {
+        const regexLetters = /^[a-záàâãéèêíïóôõöúçñ]+$/i
+        if (regexLetters === false) throwErrorData(el, `Campo ${el.placeholder.toUpperCase()} detectou caracteres inválidos, tente novamente!`)
+    }
+    if ((key === 2 || key === 3) && !Number(el.value)) throwErrorData(el, `Campo ${el.placeholder.toUpperCase()} reconhece apenas números, tente novamente!`)
+    if (key === 3 && el.value.length !== 11) throwErrorData(el, `Campo ${el.placeholder.toUpperCase()} não possui a quantidade de caracteres necessária, tente novamente!`)
 
+}
 
+// erro de campos vazios
+function throwErrorData(el, msg) {
+    let newSpan = document.createElement("span")
+    newSpan.innerHTML = msg
+    newSpan.classList.add("formRegistrationSpan")
+    el.insertAdjacentElement('afterend', newSpan)
+}
 
-
-
-
-
-
+// array de cadastrados
+let arrayEmployeeReg = []
+function manageReg(objEmployee) {
+    arrayEmployeeReg.push(objEmployee)
+}
 
 // criando ou cancelando o form
 document.querySelector("#submitForm").addEventListener('click', e => {
     e.preventDefault()
-    const definedReg = document.querySelectorAll("#secForm div")[0].getAttribute("definedReg")
+    const definedReg = document.querySelector("#secFormTitle").getAttribute("definedReg")
 
     // verifcando qual tipo de form e chamando a função necessária para setar o constructor correto
     if (definedReg ==="verificationReg") createVerificationEmployee()

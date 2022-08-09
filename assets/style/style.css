@@ -6,7 +6,7 @@
 
 html {
     scroll-behavior: smooth;
-    overflow: hidden;
+    overflow: auto;
 }
 
 a {
@@ -70,7 +70,7 @@ img {
     background-color: var(--color02);
 }
 
-#secForm div:nth-child(1) {
+#secFormTitle {
     color: white;
     font-size: 28px;
     text-align: center;
@@ -99,4 +99,13 @@ img {
 
 #confirmForm a:hover {
     background-color: var(--color01);
+}
+
+.formRegistrationSpan {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    margin: 0px 10px;
+    padding: 0px 3px;
+    color: red;
 }
