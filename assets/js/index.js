@@ -17,7 +17,6 @@ class VerificationEmployee extends Employee {
     constructor(name, lastName, age, cpf, countryOrigin, profissionalArea, workArea, listsCharge, performanceLevel) {
         super(name, lastName, age, cpf, countryOrigin, profissionalArea) 
 
-        this.department = "Verification"
         this.workArea = workArea
         this.listsCharge = listsCharge
         this.performanceLevel = performanceLevel
@@ -28,7 +27,6 @@ class TiEmployee extends Employee {
     constructor(name, lastName, age, cpf, countryOrigin, profissionalArea, developmentArea, hardSkills, seniority) {
         super(name, lastName, age, cpf, countryOrigin, profissionalArea) 
         
-        this.department = "informationTechnology"
         this.developmentArea = developmentArea
         this.hardSkills = hardSkills
         this.seniority = seniority
@@ -39,7 +37,6 @@ class supportEmployee extends Employee {
     constructor(name, lastName, age, cpf, countryOrigin, profissionalArea, knowledgeArea, regionServes, languages) {
         super(name, lastName, age, cpf, countryOrigin, profissionalArea) 
         
-        this.department = "Support"
         this.knowledgeArea = knowledgeArea
         this.regionServes = regionServes
         this.languages = languages
@@ -56,22 +53,14 @@ function createVerificationEmployee() {
     }
 }
 function createTiEmployee() {
-    const tiGeneralData = captureGeneralData() // Array com os valores nas inputs é retornado ou um "false" caso tiver algum dado inputado incorretamente
-    if (!tiGeneralData) {
-        return
-    } else {
-        const newTiEmployee = new TiEmployee(...tiGeneralData)
-        manageReg(newTiEmployee)
-    }
+    const tiGeneralData = captureGeneralData() // Array com os valores nas inputs é retornado
+    const newTiEmployee = new TiEmployee(...tiGeneralData)
+    manageReg(newTiEmployee)
 }
 function createSupportEmployee() {
-    const supGeneralData = captureGeneralData() // Array com os valores nas inputs é retornado ou um "false" caso tiver algum dado inputado incorretamente
-    if (!supGeneralData) {
-        return
-    } else {
-        const newSupEmployee = new supportEmployee(...supGeneralData)
-        manageReg(newSupEmployee)
-    }
+    const supGeneralData = captureGeneralData() // Array com os valores nas inputs é retornado
+    const newSupEmployee = new supportEmployee(...supGeneralData)
+    manageReg(newSupEmployee)
 }
 
 // apagando as span de erro; capturando os dados do form e testando se estão corretos 
@@ -83,8 +72,7 @@ function captureGeneralData() {
     const generalData = []
 
     // caso a input esteja correta, o valor da input vai para gerenalData, caso tenha alguma input errada, false vai para o gerenalData
-    const formFields = document.querySelectorAll("#formRegistration div input")
-    formFields.forEach((el, key) => {
+    document.querySelectorAll("#formRegistration div input").forEach((el, key) => {
         const dataExists = verficationData(el, key)
         if (!dataExists) {
             generalData.push(false)
@@ -104,10 +92,17 @@ function captureGeneralData() {
     if (!everyGeneralData) {
         return false
     } else {
-        cleanForm(formFields)
         return generalData
     }
 }
+
+
+
+
+
+
+
+
 
 //lançador de erros - verifica e dispara a mensagem de erro na verificação
 function verficationData(el, key) {
@@ -158,12 +153,15 @@ document.querySelector("#cancelForm").addEventListener('click', e => {
     }, 500)
 })
 
-function cleanForm(formFields) {
-    window.alert("Funcionário cadastrado com sucesso!")
-    formFields.forEach((el, key) => {
-        el.value = ''
-    })
-}
+
+
+
+
+
+
+
+
+
 
 // NOME
 // SOBRENOME
