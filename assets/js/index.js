@@ -1,3 +1,5 @@
+import { showEmployeesArea } from "./employees.js"
+
 class Employee {
     constructor(name, lastName, age, cpf, countryOrigin, profissionalArea) {
         this.name = name 
@@ -136,6 +138,8 @@ function verficationData(el, key) {
 let arrayEmployeeReg = []
 function manageReg(objEmployee) {
     arrayEmployeeReg.push(objEmployee)
+    console.log(arrayEmployeeReg)
+    showEmployeesArea(arrayEmployeeReg)
 }
 
 // criando ou cancelando o form

@@ -109,3 +109,26 @@ img {
     padding: 0px 3px;
     color: red;
 }
+
+#employeesArea {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 200px 0px;
+    background: linear-gradient(var(--color02), var(--color01));
+}
+#titleEmployeesArea {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.divAreaEmployee {
+    background-color: white;
+    width: 500px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
