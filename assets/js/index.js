@@ -9,10 +9,6 @@ class Employee {
         this.countryOrigin = countryOrigin
         this.profissionalArea = profissionalArea
     }
-
-    checkCPF(cpf) {
-
-    }
 }
 
 class VerificationEmployee extends Employee {
